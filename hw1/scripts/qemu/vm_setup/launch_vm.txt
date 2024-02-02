@@ -1,0 +1,71 @@
+VM 1: image format = raw, disk size = 30G, 
+memory = 3G, #CPU cores = 4
+$ qemu-system-aarch64 \
+-accel hvf -cpu host -M virt,highmem=off -m 3G -smp 4 \
+-drive file=edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on \
+-drive file=ovmf_vars.fd,if=pflash,format=raw \
+-drive if=none,file=ubuntu_2.raw,format=raw,id=hd0 \
+-device virtio-blk-device,drive=hd0,serial="dummyserial" \
+-device virtio-net-device,netdev=net0 \
+-netdev user,id=net0 \
+-vga none -device ramfb \
+-device usb-ehci -device usb-kbd -device usb-mouse -usb \
+-display default,show-cursor=on \
+-chardev qemu-vdagent,id=ch1,name=vdagent,clipboard=on \
+-device virtio-serial-pci \
+-device virtserialport,chardev=ch1,id=ch1,name=com.redhat.spice.0
+-monitor stdio
+
+VM 2: image format = raw, disk size = 30G, 
+memory = 3G, #CPU cores = 6
+$ qemu-system-aarch64 \
+-accel hvf -cpu host -M virt,highmem=off -m 3G -smp 6 \
+-drive file=edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on \
+-drive file=ovmf_vars.fd,if=pflash,format=raw \
+-drive if=none,file=ubuntu_2.raw,format=raw,id=hd0 \
+-device virtio-blk-device,drive=hd0,serial="dummyserial" \
+-device virtio-net-device,netdev=net0 \
+-netdev user,id=net0 \
+-vga none -device ramfb \
+-device usb-ehci -device usb-kbd -device usb-mouse -usb \
+-display default,show-cursor=on \
+-chardev qemu-vdagent,id=ch1,name=vdagent,clipboard=on \
+-device virtio-serial-pci \
+-device virtserialport,chardev=ch1,id=ch1,name=com.redhat.spice.0
+-monitor stdio
+
+VM 3: image format = raw, disk size = 30G, 
+memory = 2G, #CPU cores = 4
+$ qemu-system-aarch64 \
+-accel hvf -cpu host -M virt,highmem=off -m 2G -smp 4 \
+-drive file=edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on \
+-drive file=ovmf_vars.fd,if=pflash,format=raw \
+-drive if=none,file=ubuntu_2.raw,format=raw,id=hd0 \
+-device virtio-blk-device,drive=hd0,serial="dummyserial" \
+-device virtio-net-device,netdev=net0 \
+-netdev user,id=net0 \
+-vga none -device ramfb \
+-device usb-ehci -device usb-kbd -device usb-mouse -usb \
+-display default,show-cursor=on \
+-chardev qemu-vdagent,id=ch1,name=vdagent,clipboard=on \
+-device virtio-serial-pci \
+-device virtserialport,chardev=ch1,id=ch1,name=com.redhat.spice.0
+-monitor stdio
+
+VM 4: image format = raw, disk size = 30G, 
+memory = 2G, #CPU cores = 6
+$ qemu-system-aarch64 \
+-accel hvf -cpu host -M virt,highmem=off -m 2G -smp 6 \
+-drive file=edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on \
+-drive file=ovmf_vars.fd,if=pflash,format=raw \
+-drive if=none,file=ubuntu_2.raw,format=raw,id=hd0 \
+-device virtio-blk-device,drive=hd0,serial="dummyserial" \
+-device virtio-net-device,netdev=net0 \
+-netdev user,id=net0 \
+-vga none -device ramfb \
+-device usb-ehci -device usb-kbd -device usb-mouse -usb \
+-display default,show-cursor=on \
+-chardev qemu-vdagent,id=ch1,name=vdagent,clipboard=on \
+-device virtio-serial-pci \
+-device virtserialport,chardev=ch1,id=ch1,name=com.redhat.spice.0
+-monitor stdio
