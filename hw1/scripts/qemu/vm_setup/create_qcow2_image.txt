@@ -1,0 +1,30 @@
+QEMU VM's image file format: qcow2
+Size = 10 G
+
+Reserve space for VM's disk:
+$ qemu-img create -f qcow2 ubuntu_1.qcow2 10G
+
+
+Copy "edk2-aarch64-code.fd" file associated with
+the "qemu-img" binary to the current directory:
+$ cp /opt/homebrew/Cellar/qemu/8.2.0/share/qemu/edk2-aarch64-code.fd .
+
+
+Create a file "ovmf_vars.fd" with a size of 64 megabytes, 
+filled with zero bytes:
+$ dd if=/dev/zero conv=sync bs=1m count=64 of=ovmf_vars.fd
+
+
+Install Ubuntu on QEMU as a cdrom:
+qemu-system-aarch64 \
+-accel hvf -cpu host -M virt,highmem=off -m 2048 -smp 2 \
+-drive file=edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on \
+-drive file=ovmf_vars.fd,if=pflash,format=raw \
+-drive if=none,file=ubuntu_1.qcow2,format=qcow2,id=hd0 \
+-device virtio-blk-device,drive=hd0,serial="dummyserial" \
+-device virtio-net-device,netdev=net0 \
+-netdev user,id=net0 \
+-vga none -device ramfb \
+-cdrom ubuntu-20.04.5-live-server-arm64.iso \
+-device usb-ehci -device usb-kbd -device usb-mouse -usb \
+-monitor stdio
