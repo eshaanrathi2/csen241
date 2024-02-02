@@ -1,0 +1,11 @@
+Results for 10000 runs of test Sysbench CPU:
+Average: 10742.68 events per second
+Minimum: 10704.15 events per second
+Maximum: 10777.91 events per second
+Standard Deviation: 28.08 events per second
+
+Results for 15000 runs of test Sysbench CPU:
+Average: 10762.24 events per second
+Minimum: 10658.38 events per second
+Maximum: 10815.75 events per second
+Standard Deviation: 63.05 events per second
