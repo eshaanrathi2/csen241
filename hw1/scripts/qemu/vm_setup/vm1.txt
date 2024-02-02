@@ -1,0 +1,102 @@
+image file format: qcow2
+Number of virtual CPUs = 2
+Memory = 2000 MB
+
+Project folder:
+/Users/eshaan/Desktop/academic/SCU/quarter6-winter24/cloud/csen241_git/hw1
+
+
+Reserve space for VM's disk:
+$ qemu-img create -f qcow2 ubuntu_1.qcow2 10G
+
+
+Copy "edk2-aarch64-code.fd" file associated with
+the "qemu-img" binary to the current directory:
+$ cp /opt/homebrew/Cellar/qemu/8.2.0/share/qemu/edk2-aarch64-code.fd .
+
+
+Create a file "ovmf_vars.fd" with a size of 64 megabytes, 
+filled with zero bytes:
+$ dd if=/dev/zero conv=sync bs=1m count=64 of=ovmf_vars.fd
+
+
+To install Ubuntu image as a cdrom on qemu:
+$ qemu-system-aarch64 \
+  -machine virt,accel=hvf,highmem=off \
+  -cpu cortex-a72 -smp 2 -m 2000 \
+  -device virtio-gpu-pci \
+  -device virtio-keyboard-pci \
+  -drive "format=raw,file=edk2-aarch64-code.fd,if=pflash,readonly=on" \
+  -drive "format=raw,file=ovmf_vars.fd,if=pflash" \
+  -drive "format=qcow2,file=ubuntu_1.qcow2" \
+  -cdrom ubuntu-20.04.5-live-server-arm64.iso
+
+
+
+
+
+
+
+Sean choi:
+$ qemu-system-aarch64 \
+-accel hvf -cpu host -M virt,highmem=off -m 2048 -smp 2 \
+
+-drive file=edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on \
+-drive file=ubuntu_1.qcow2,format=qcow2,id=hd0 \
+
+  -drive "format=raw,file=ovmf_vars.fd,if=pflash" \
+  -drive "format=qcow2,file=ubuntu_1.qcow2"
+
+-device virtio-blk-device,drive=hd0,serial="dummyserial" \
+-device virtio-net-device,netdev=net0 \
+-netdev user,id=net0 \
+-vga none -device ramfb \
+-cdrom ubuntu-20.04.5-live-server-arm64.iso \
+-device usb-ehci -device usb-kbd -device usb-mouse -usb \
+-nographic
+
+Github:
+qemu-system-aarch64 \
+  -machine virt,accel=hvf,highmem=off \
+  -cpu cortex-a72 -smp 4 -m 3G \
+  -device virtio-gpu-pci \
+  -device virtio-keyboard-pci \
+  -drive "format=raw,file=edk2-aarch64-code.fd,if=pflash,readonly=on" \
+  -drive "format=raw,file=ovmf_vars.fd,if=pflash" \
+  -drive "format=qcow2,file=ubuntu_1.qcow2"
+  -cdrom ubuntu-20.04.5-live-server-arm64.iso
+
+
+YT / theboreddev:
+qemu-img create -f raw ubuntu_2.raw 10G
+
+qemu-system-aarch64 \
+   -monitor stdio \
+   -M virt,highmem=off \
+   -accel hvf \
+   -cpu host \
+   -smp 4 \
+   -m 3000 \
+   -device virtio-blk-device,drive=hd0,serial="dummyserial" \
+   -device virtio-net-device,netdev=net0 \
+   -netdev user,id=net0 \
+   -vga none -device ramfb \   
+   -display default,show-cursor=on \
+   -drive file=ubuntu_2.raw,format=raw,if=virtio,cache=writethrough \
+   -cdrom ubuntu-20.04.5-live-server-arm64.iso
+  
+
+Github 2 working !!!:
+
+qemu-system-aarch64 \
+-accel hvf -cpu host -M virt,highmem=off -m 2048 -smp 2 \
+-drive file=edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on \
+-drive file=ovmf_vars.fd,if=pflash,format=raw \
+-drive if=none,file=ubuntu_1.qcow2,format=qcow2,id=hd0 \
+-device virtio-blk-device,drive=hd0,serial="dummyserial" \
+-device virtio-net-device,netdev=net0 \
+-netdev user,id=net0 \
+-vga none -device ramfb \
+-cdrom ubuntu-20.04.5-live-server-arm64.iso \
+-device usb-ehci -device usb-kbd -device usb-mouse -usb \
+-monitor stdio
