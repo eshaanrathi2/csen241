@@ -1,0 +1,10 @@
+# Use the base Ubuntu image
+FROM ubuntu:20.04
+
+# Install sysbench
+RUN apt-get update
+RUN apt-get install -y sysbench
+RUN apt-get install -y bc
+
+# Set the entry point to sysbench
+CMD ["sysbench"]
