@@ -25,10 +25,10 @@ qemu-system-aarch64 \
 -device virtio-net-device,netdev=net0 \
 -netdev user,id=net0 \
 -vga none -device ramfb \
--cdrom ubuntu-20.04.5-live-server-arm64.iso \            
+-cdrom ubuntu-20.04.5-live-server-arm64.iso \         
 -device usb-ehci -device usb-kbd -device usb-mouse -usb \
 -display default,show-cursor=on \
 -chardev qemu-vdagent,id=ch1,name=vdagent,clipboard=on \
 -device virtio-serial-pci \
--device virtserialport,chardev=ch1,id=ch1,name=com.redhat.spice.0
+-device virtserialport,chardev=ch1,id=ch1,name=com.redhat.spice.0 \
 -monitor stdio
