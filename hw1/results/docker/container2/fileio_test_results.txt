@@ -1,0 +1,12 @@
+Throughput of Sysbench fileio test with --file-test-mode=rndrd --file-num=1 --file-total-size=1G
+Average: 29.39 read, MiB/s
+Minimum: 27.27 read, MiB/s
+Maximum: 31.13 read, MiB/s
+Standard Deviation: 1.57 read, MiB/s
+
+Throughput of Sysbench fileio test with --file-test-mode=rndwr --file-num=1 --file-total-size=1G
+Average: 28.84 written, MiB/s
+Minimum: 27.37 written, MiB/s
+Maximum: 29.95 written, MiB/s
+Standard Deviation: .97 written, MiB/s
+

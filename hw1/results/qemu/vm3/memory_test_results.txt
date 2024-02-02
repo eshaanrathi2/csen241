@@ -1,0 +1,12 @@
+
+Results for 5 runs of Sysbench Memory test with memory-block-size=2K and memory-total-size=15G:
+Average: 6842666.27 events per second
+Minimum: 6544328.86 events per second
+Maximum: 6934414.95 events per second
+Standard Deviation: 168137.49 events per second
+
+Results for 5 runs of Sysbench Memory test with memory-block-size=4K and memory-total-size=15G:
+Average: 4948601.92 events per second
+Minimum: 4885277.67 events per second
+Maximum: 5069176.22 events per second
+Standard Deviation: 73843.76 events per second
