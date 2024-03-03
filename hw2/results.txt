@@ -1,7 +1,6 @@
-Time taken for Without figlet 1 = 3.20 seconds
-Time taken for Without figlet 2 =  2.37 seconds
-Average over 10 runs without figlet = 3.85 seconds
-Time taken for with figlet 1 = 4.65 seconds
-Time taken for with figlet 2 = 4.64 seconds
-Time taken for with figlet 2 = 4.71 seconds
-Average over 10 runs with figlet = 4.62 seconds
+Time taken without figlet 1 = 0.427 seconds
+Time taken without figlet 2 =  0.424 seconds
+Average over 10 runs without figlet = 0.424 seconds
+Time taken for with figlet 2 = 0.433 seconds
+Time taken for with figlet 2 = 0.441 seconds
+Average over 10 runs with figlet = 0.434 seconds
