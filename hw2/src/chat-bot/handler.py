@@ -76,9 +76,8 @@ def handle(req):
         # Run figlet command (replace "faas-cli" with your actual figlet execution method)
         # figlet_output = subprocess.run(["faas-cli", "invoke", "figlet", f"echo {text} |"], capture_output=True).stdout.decode("utf-8")
         # figlet_output = subprocess.run(["echo " + text_extract + " | ", "faas-cli", "invoke", "figlet"], capture_output=True).stdout.decode("utf-8")
-        # figlet_output = subprocess.getoutput("echo " + text_extract + " | faas-cli invoke figlet")
-        command = "echo hello | faas-cli invoke figlet"
-        return subprocess.getoutput(command)
+        figlet_output = subprocess.getoutput("echo " + text_extract + " | faas-cli invoke figlet")
+        return subprocess.getoutput(figlet_output)
         
         
 
