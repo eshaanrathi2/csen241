@@ -6,8 +6,8 @@ class BinaryTreeTopo( Topo ):
         # Initialize topology
         Topo.__init__( self )
         
-    def build( self ):
-        "Binary tree topology with 8 hosts and 7 switches"
+    # def build( self ):
+    #     "Binary tree topology with 8 hosts and 7 switches"
 
         # Add 8 hosts
         h1 = self.addHost( 'h1' )
